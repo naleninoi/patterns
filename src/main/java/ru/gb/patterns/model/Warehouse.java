@@ -13,6 +13,8 @@ import java.util.List;
 @Table(name = "warehouses")
 public class Warehouse extends BaseEntity{
 
+    public static Long WAREHOUSE_ANY = -1L;
+
     @Column(name = "address")
     private String address;
 
@@ -26,6 +28,9 @@ public class Warehouse extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "holder_id", referencedColumnName = "id")
     private BalloonHolder balloonHolder;
+
+    @OneToMany(mappedBy = "warehouse")
+    private List<User> users;
 
     public String getAddress() {
         return address;
@@ -57,6 +62,14 @@ public class Warehouse extends BaseEntity{
 
     public void setBalloonHolder(BalloonHolder balloonHolder) {
         this.balloonHolder = balloonHolder;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }

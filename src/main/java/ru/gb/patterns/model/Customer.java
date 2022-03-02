@@ -6,12 +6,16 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
 public class Customer extends BaseEntity {
+
+    public static Long CUSTOMER_ANY = -1L;
 
     @Column(name = "address")
     private String address;
@@ -25,6 +29,9 @@ public class Customer extends BaseEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "holder_id", referencedColumnName = "id")
     private BalloonHolder balloonHolder;
+
+    @OneToMany(mappedBy = "customer")
+    private List<User> users;
 
     public String getAddress() {
         return address;
@@ -56,6 +63,14 @@ public class Customer extends BaseEntity {
 
     public void setBalloonHolder(BalloonHolder balloonHolder) {
         this.balloonHolder = balloonHolder;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
 }
