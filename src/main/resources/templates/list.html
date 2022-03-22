@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouses</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <style>
+        a {
+            color: black;
+        }
+        a:hover {
+            text-decoration: none;
+            color: black;
+        }
+        a:visited {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h2 th:if="${#lists.isEmpty(warehouses)}">Нет складов для отображения</h2>
+            <div th:if="${!#lists.isEmpty(warehouses)}">
+                <h2 class="my-5">Склады</h2>
+                <table class="table table-striped table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th>№ склада</th>
+                        <th>Адрес</th>
+                        <th>Телефон</th>
+                        <th>Удалить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="warehouse : ${warehouses}">
+                        <td th:text="${warehouse.id}"></td>
+                        <td th:text="${warehouse.address}"></td>
+                        <td th:text="${warehouse.phone}"></td>
+                        <td>
+                            <button class="btn btn-danger">
+                                <a th:href="@{/warehouses/delete/{id}(id=${warehouse.id})}">X</a>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-success"><a href="get-form">Добавить новый склад</a></button>
+</div>
+</body>
+</html>
