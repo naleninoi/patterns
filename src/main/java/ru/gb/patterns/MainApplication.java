@@ -15,20 +15,20 @@ public class MainApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:h2:mem:test_db", "sa", "");
-            CustomerMapper mapper = new CustomerMapper(connection);
-            mapper.create("address", "phone");
-            Customer customer = mapper.findById(1L);
-            CustomerIdentityMap.addCustomer(customer);
-
-            System.out.println(CustomerIdentityMap.contains(customer));
-
-
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Connection connection = DriverManager.getConnection("jdbc:h2:mem:test_db", "sa", "");
+//            CustomerMapper mapper = new CustomerMapper(connection);
+//            mapper.create("address", "phone");
+//            Customer customer = mapper.findById(1L);
+//            CustomerIdentityMap.addCustomer(customer);
+//
+//            System.out.println(CustomerIdentityMap.contains(customer));
+//
+//
+//            connection.close();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
 }
